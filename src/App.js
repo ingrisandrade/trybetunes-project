@@ -5,5 +5,5 @@ class App extends React.Component {
     return (<p>TrybeTunes</p>);
   }
 }
-
+/* comentário */
 export default App;
