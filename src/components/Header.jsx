@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-      <div>Header</div>
+      <div>
+        <header data-testid="header-component">
+          Header
+        </header>
+      </div>
     );
   }
 }
