@@ -5,8 +5,16 @@ class Search extends Component {
   render() {
     return (
       <div data-testid="page-search">
-        <h2>Search</h2>
         <Header />
+        <h2>Search</h2>
+        <form>
+          <input
+            type="text"
+            name=""
+            id=""
+            data-testid="search-artist-input"
+          />
+        </form>
       </div>
     );
   }
