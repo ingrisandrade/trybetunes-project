@@ -14,6 +14,12 @@ class Search extends Component {
             id=""
             data-testid="search-artist-input"
           />
+          <button
+            type="button"
+            data-testid="search-artist-button"
+          >
+            Pesquisar
+          </button>
         </form>
       </div>
     );
