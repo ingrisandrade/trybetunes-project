@@ -13,6 +13,12 @@ class Login extends Component {
             data-testid="login-name-input"
           />
         </label>
+        <button
+          type="button"
+          data-testid="login-submit-button"
+        >
+          Entrar
+        </button>
       </div>
     );
   }
