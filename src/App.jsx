@@ -27,5 +27,5 @@ class App extends React.Component {
     );
   }
 }
-/* comentário */
+
 export default App;
