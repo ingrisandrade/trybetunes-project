@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
 import Album from './pages/Album';
 import Favorites from './pages/Favorites';
 import Login from './pages/Login';
@@ -20,6 +21,7 @@ class App extends React.Component {
           <Route exact path="/profile" component={ Profile } />
           <Route exact path="/profile/edit" component={ ProfileEdit } />
           <Route component={ NotFound } />
+          <Route path="/header" component={ Header } />
         </Switch>
       </BrowserRouter>
     );
