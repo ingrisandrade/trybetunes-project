@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import Loading from './Loading';
 
 class Search extends Component {
   state ={
     btnDisabled: true,
     searchArtist: '',
+    loadingDisable: true,
+    artist: '',
+    listMusic: [],
   }
 
   inputChange = ({ name, value }) => {
@@ -24,10 +30,26 @@ class Search extends Component {
     });
   }
 
+  // exibir a mensagem carregando: é o Loading
+  btnClickSearch = async () => {
+    const { searchArtist } = this.state;
+    this.setState({
+      loadingDisable: false, artist: searchArtist,
+    });
+
+    const list = await searchAlbumsAPI(searchArtist);
+    this.setState({
+      loadingDisable: true, searchArtist: '', listMusic: list,
+    });
+  }
+
   render() {
     const {
       searchArtist,
       btnDisabled,
+      loadingDisable,
+      artist,
+      listMusic,
     } = this.state;
 
     return (
