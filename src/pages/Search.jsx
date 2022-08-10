@@ -56,23 +56,26 @@ class Search extends Component {
       <div data-testid="page-search">
         <Header />
         <h2>Search</h2>
-        <form>
-          <input
-            type="text"
-            name="searchArtist"
-            value={ searchArtist }
-            placeholder="Digite nome do artista"
-            data-testid="search-artist-input"
-            onChange={ ({ target }) => this.inputChange(target) }
-          />
-          <button
-            type="button"
-            data-testid="search-artist-button"
-            disabled={ btnDisabled }
-          >
-            Pesquisar
-          </button>
-        </form>
+        { !loadingDisable ? <Loading /> : (
+          <form>
+            <input
+              type="text"
+              name="searchArtist"
+              value={ searchArtist }
+              placeholder="Digite nome do artista"
+              data-testid="search-artist-input"
+              onChange={ ({ target }) => this.inputChange(target) }
+            />
+            <button
+              type="button"
+              data-testid="search-artist-button"
+              disabled={ btnDisabled }
+            >
+              Pesquisar
+            </button>
+          </form>
+          )
+        }
       </div>
     );
   }
