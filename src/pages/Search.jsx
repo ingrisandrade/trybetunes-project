@@ -30,52 +30,37 @@ class Search extends Component {
     });
   }
 
-  // exibir a mensagem carregando: é o Loading
   btnClickSearch = async () => {
-    const { searchArtist } = this.state;
-    this.setState({
-      loadingDisable: false, artist: searchArtist,
-    });
-
-    const list = await searchAlbumsAPI(searchArtist);
-    this.setState({
-      loadingDisable: true, searchArtist: '', listMusic: list,
-    });
+    const  {  }
   }
 
   render() {
     const {
       searchArtist,
       btnDisabled,
-      loadingDisable,
-      artist,
-      listMusic,
     } = this.state;
 
     return (
       <div data-testid="page-search">
         <Header />
         <h2>Search</h2>
-        { !loadingDisable ? <Loading /> : (
-          <form>
-            <input
-              type="text"
-              name="searchArtist"
-              value={ searchArtist }
-              placeholder="Digite nome do artista"
-              data-testid="search-artist-input"
-              onChange={ ({ target }) => this.inputChange(target) }
-            />
-            <button
-              type="button"
-              data-testid="search-artist-button"
-              disabled={ btnDisabled }
-            >
-              Pesquisar
-            </button>
-          </form>
-          )
-        }
+        <form>
+          <input
+            type="text"
+            name="searchArtist"
+            value={ searchArtist }
+            placeholder="Digite nome do artista"
+            data-testid="search-artist-input"
+            onChange={ ({ target }) => this.inputChange(target) }
+          />
+          <button
+            type="button"
+            data-testid="search-artist-button"
+            disabled={ btnDisabled }
+          >
+            Pesquisar
+          </button>
+        </form>
       </div>
     );
   }
