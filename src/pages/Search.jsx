@@ -8,7 +8,7 @@ class Search extends Component {
   state ={
     btnDisabled: true,
     searchArtist: '',
-    loadingDisable: true,
+    loadingDisable: false,
     artist: '',
     listMusic: [],
   }
@@ -30,15 +30,31 @@ class Search extends Component {
     });
   }
 
-  btnClickSearch = async () => {
-    const  {  }
+  btnClickSearch = () => {
+    const { searchArtist } = this.state;
+    this.setState({
+      loadingDisable: true,
+      artist: searchArtist,
+    }, async () => {
+      const fontAlbuns = await searchAlbumsAPI(searchArtist);
+      this.setState({
+        listMusic: fontAlbuns,
+        loadingDisable: false,
+        searchArtist: '',
+      });
+    });
   }
 
   render() {
     const {
       searchArtist,
       btnDisabled,
+      listMusic,
+      artist,
+      loadingDisable,
     } = this.state;
+
+    if (loadingDisable) return <Loading />;
 
     return (
       <div data-testid="page-search">
@@ -57,10 +73,49 @@ class Search extends Component {
             type="button"
             data-testid="search-artist-button"
             disabled={ btnDisabled }
+            onClick={ this.btnClickSearch }
           >
             Pesquisar
           </button>
         </form>
+        <div>
+          {
+            (listMusic.length) ? (
+              <div>
+                <h3>
+                  {
+                    `Resultado de álbuns de: ${artist}`
+                  }
+                </h3>
+
+                {listMusic.map(({
+                  nameArtist,
+                  collectionId,
+                  collectionName,
+                  artworkUr100,
+                }) => (
+                  <div key={ collectionId }>
+                    <Link
+                      to={ `/album/${collectionId}` }
+                      data-testid={ `link-to-album-${collectionId}` }
+                    >
+                      <img
+                        src={ artworkUr100 }
+                        alt={ nameArtist }
+                      />
+                    </Link>
+
+                    <p>{ collectionName }</p>
+
+                    <p>{ nameArtist }</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>Nenhum álbum foi encontrado</p>
+            )
+          }
+        </div>
       </div>
     );
   }
