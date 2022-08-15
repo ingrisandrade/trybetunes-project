@@ -55,7 +55,11 @@ class Album extends Component {
             </div>
           ))
         }
-        <MusicCard albumArtist={ albumArtist.slice(1) } />
+        <MusicCard
+          albumArtist={
+            albumArtist.slice(1)
+          }
+        />
       </div>
     );
   }
