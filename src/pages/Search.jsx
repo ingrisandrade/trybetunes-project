@@ -89,10 +89,10 @@ class Search extends Component {
                 </h3>
 
                 {listMusic.map(({
-                  nameArtist,
+                  artistName,
                   collectionId,
                   collectionName,
-                  artworkUr100,
+                  artworkUrl100,
                 }) => (
                   <div key={ collectionId }>
                     <Link
@@ -100,14 +100,14 @@ class Search extends Component {
                       data-testid={ `link-to-album-${collectionId}` }
                     >
                       <img
-                        src={ artworkUr100 }
-                        alt={ nameArtist }
+                        src={ artworkUrl100 }
+                        alt={ artistName }
                       />
                     </Link>
 
                     <p>{ collectionName }</p>
 
-                    <p>{ nameArtist }</p>
+                    <p>{ artistName }</p>
                   </div>
                 ))}
               </div>
