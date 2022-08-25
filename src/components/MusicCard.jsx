@@ -28,11 +28,6 @@ class MusicCard extends Component {
     this.setState({ loading: true });
 
     const favSongsChecked = albumArtist.find((song) => song.trackId === trackId);
-    // this.setState((prevState) => ({
-    //   favSongs: [...prevState.favSongs, favSongsChecked],
-    // }));
-    // await addSong(favSongsChecked);
-    // this.setState({ loading: false });
     if (checked) {
       await addSong(favSongsChecked);
     } else {
@@ -78,7 +73,6 @@ class MusicCard extends Component {
                   name="musicas-favoritas"
                   id="musicas-favoritas"
                   data-testid={ `checkbox-music-${trackId}` }
-                  // checked={ favSongs.some((song) => song.trackId === trackId) }
                   checked={ this.favoritesChecked(trackId) }
                   onChange={ (event) => this.addSongCh(trackId, event) }
                 />
