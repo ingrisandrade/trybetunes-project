@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { getUser } from '../services/userAPI';
 import Loading from './Loading';
@@ -17,7 +18,7 @@ class Profile extends Component {
     this.setState({ loading: true });
 
     const getInfoUser = await getUser();
-    this.setState({ user: [getInfoUser], loading: false });
+    this.setState({ userInfo: [getInfoUser], loading: false });
   }
 
   render() {
@@ -31,7 +32,7 @@ class Profile extends Component {
         <Header />
         <h1>Profile</h1>
         {
-          loading ? <Loading /> : (user.map((info) => (
+          loading ? <Loading /> : (userInfo.map((info) => (
             <div key={ info.name }>
               <ul>
                 <li>
@@ -45,6 +46,9 @@ class Profile extends Component {
                 <li>{ info.email }</li>
                 <li>{ info.description }</li>
               </ul>
+              <Link to="/profile/edit">
+                Editar perfil
+              </Link>
             </div>
           )))
         }
