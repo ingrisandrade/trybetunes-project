@@ -10,34 +10,33 @@ class Favorites extends Component {
     listFavSongs: [],
   }
 
-  async componentDidMount() {
-    const favLocalStorage = await getFavoriteSongs();
-
-    this.setState({
-      loading: true,
-      listFavSongs: favLocalStorage,
-    });
+  componentDidMount() {
+    this.favSongs();
   }
 
-  handleFav = async (id) => {
-    const {
-      listFavSongs
-    } = this.state;
+  favSongs = async () => {
+    this.setState({
+      loading: true,
+    });
+    const favLocalStorage = await getFavoriteSongs();
+
+    this.setState({ listFavSongs: favLocalStorage });
     this.setState({ loading: false });
-
-    const favSong = listFavSongs.find((song) => song.trackId === trackId);
-    await removeSong(favSong);
-    const favLocalStorage = await getFavoriteSongs();
-    this.setState({
-      loading: true,
-      listFavSongs: favLocalStorage,
-    });
   }
+
   render() {
-    return (
+    const {
+      loading,
+      listFavSongs,
+    } = this.state;
+    return loading ? <Loading /> : (
       <div data-testid="page-favorites">
-        <h1>Favorites</h1>
         <Header />
+        <h1>Favorites</h1>
+        <MusicCard
+          albumArtist={ listFavSongs }
+          funcFavorite={ this.favSongs }
+        />
       </div>
     );
   }

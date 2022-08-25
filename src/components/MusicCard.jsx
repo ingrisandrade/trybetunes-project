@@ -22,7 +22,7 @@ class MusicCard extends Component {
   }
 
   addSongCh = async (trackId, { target }) => { // Add músicas na lista de músicas favoritas
-    const { albumArtist } = this.props;
+    const { albumArtist, funcFavorite } = this.props;
     const { checked } = target;
 
     this.setState({ loading: true });
@@ -34,6 +34,7 @@ class MusicCard extends Component {
       await removeSong(favSongsChecked);
     }
     this.addSongsFav();
+    funcFavorite();
   }
 
   favoritesChecked = (trackId) => {
@@ -92,5 +93,8 @@ MusicCard.propTypes = {
     trackName: PropTypes.string,
   })),
 }.isRequired;
+MusicCard.defaultProps = {
+  funcFavorite: () => {},
+};
 
 export default MusicCard;
