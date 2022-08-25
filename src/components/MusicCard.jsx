@@ -9,7 +9,19 @@ class MusicCard extends Component {
     loading: false,
   }
 
-  addSongCh = async (trackId) => {
+  componentDidMount() {
+    this.addSongsFav();
+  }
+
+  addSongsFav = async () => {
+    this.setState({ loading: true });
+
+    const localStorageSongs = await getFavoriteSongs();
+    this.setState({ favSongs: localStorageSongs });
+    this.setState({ loading: false });
+  }
+
+  addSongCh = async (trackId) => { // Add músicas na lista de músicas favoritas
     const { albumArtist } = this.props;
 
     this.setState({ loading: true });
@@ -21,12 +33,16 @@ class MusicCard extends Component {
     this.setState({ loading: false });
   }
 
+  favoritesChecked = (trackId) => {
+    const { favSongs } = this.state;
+    const favResult = favSongs.some((song) => song.trackId === trackId);
+
+    return favResult;
+  }
+
   render() {
     const { albumArtist } = this.props;
-    const {
-      loading,
-      favSongs,
-    } = this.state;
+    const { loading } = this.state;
 
     return loading ? <Loading /> : (
       <div>
@@ -54,7 +70,8 @@ class MusicCard extends Component {
                   name="musicas-favoritas"
                   id="musicas-favoritas"
                   data-testid={ `checkbox-music-${trackId}` }
-                  checked={ favSongs.some((song) => song.trackId === trackId) }
+                  // checked={ favSongs.some((song) => song.trackId === trackId) }
+                  checked={ this.favoritesChecked(trackId) }
                   onChange={ () => this.addSongCh(trackId) }
                 />
               </label>
