@@ -18,7 +18,10 @@ class Profile extends Component {
     this.setState({ loading: true });
 
     const getInfoUser = await getUser();
-    this.setState({ userInfo: [getInfoUser], loading: false });
+    this.setState({
+      userInfo: [getInfoUser],
+      loading: false,
+    });
   }
 
   render() {
