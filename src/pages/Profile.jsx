@@ -3,8 +3,11 @@ import Header from '../components/Header';
 import { getUser } from '../services/userAPI';
 import Loading from './Loading';
 
-
 class Profile extends Component {
+  state = {
+    userInfo: [],
+    loading: false,
+  }
   render() {
     return (
       <div data-testid="page-profile">
