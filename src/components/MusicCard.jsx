@@ -28,11 +28,17 @@ class MusicCard extends Component {
     this.setState({ loading: true });
 
     const favSongsChecked = albumArtist.find((song) => song.trackId === trackId);
-    this.setState((prevState) => ({
-      favSongs: [...prevState.favSongs, favSongsChecked],
-    }));
-    await addSong(favSongsChecked);
-    this.setState({ loading: false });
+    // this.setState((prevState) => ({
+    //   favSongs: [...prevState.favSongs, favSongsChecked],
+    // }));
+    // await addSong(favSongsChecked);
+    // this.setState({ loading: false });
+    if (checked) {
+      await addSong(favSongsChecked);
+    } else {
+      await removeSong(favSongsChecked);
+    }
+    this.addSongsFav();
   }
 
   favoritesChecked = (trackId) => {
@@ -74,7 +80,7 @@ class MusicCard extends Component {
                   data-testid={ `checkbox-music-${trackId}` }
                   // checked={ favSongs.some((song) => song.trackId === trackId) }
                   checked={ this.favoritesChecked(trackId) }
-                  onChange={ () => this.addSongCh(trackId) }
+                  onChange={ (event) => this.addSongCh(trackId, event) }
                 />
               </label>
             </ul>
