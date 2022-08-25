@@ -5,7 +5,10 @@ import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class Favorites extends Component {
-
+  state = {
+    loading: false,
+    listFavSongs: [],
+  }
   render() {
     return (
       <div data-testid="page-favorites">
