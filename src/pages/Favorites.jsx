@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import { getFavoriteSongs } from '../services/favoriteSongsAPI';
-
+import MusicCard from '../components/MusicCard';
+import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import Loading from './Loading';
 
 class Favorites extends Component {
+
   render() {
     return (
       <div data-testid="page-favorites">
