@@ -21,10 +21,12 @@ class MusicCard extends Component {
     this.setState({ loading: false });
   }
 
-  addSongCh = async (trackId) => { // Add músicas na lista de músicas favoritas
+  addSongCh = async (trackId, { target }) => { // Add músicas na lista de músicas favoritas
     const { albumArtist } = this.props;
+    const { checked } = target;
 
     this.setState({ loading: true });
+
     const favSongsChecked = albumArtist.find((song) => song.trackId === trackId);
     this.setState((prevState) => ({
       favSongs: [...prevState.favSongs, favSongsChecked],
