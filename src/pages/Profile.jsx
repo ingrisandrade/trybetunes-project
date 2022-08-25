@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
+import { getUser } from '../services/userAPI';
+import Loading from './Loading';
+
 
 class Profile extends Component {
   render() {
